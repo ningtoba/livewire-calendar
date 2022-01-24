@@ -4,26 +4,41 @@
     ondragleave="onLivewireCalendarEventDragLeave(event, '{{ $componentId }}', '{{ $day }}', '{{ $dragAndDropClasses }}');"
     ondragover="onLivewireCalendarEventDragOver(event);"
     ondrop="onLivewireCalendarEventDrop(event, '{{ $componentId }}', '{{ $day }}', {{ $day->year }}, {{ $day->month }}, {{ $day->day }}, '{{ $dragAndDropClasses }}');"
-    class="flex-1 h-40 lg:h-48 border border-gray-200 -mt-px -ml-px"
-    style="min-width: 10rem;">
+    style="min-width: 10rem; flex: 1 1 0%; height:10rem; @media (min-width: 1024px) {height: 12rem;} margin-top: -1px; 
+margin-left: -1px; 
+border-width: 1px; 
+border-color: #E5E7EB; 
+">
 
     {{-- Wrapper for Drag and Drop --}}
     <div
-        class="w-full h-full"
+        style="width: 100%; 
+height: 100%; "
         id="{{ $componentId }}-{{ $day }}">
 
         <div
             @if($dayClickEnabled)
                 wire:click="onDayClick({{ $day->year }}, {{ $day->month }}, {{ $day->day }})"
             @endif
-            class="w-full h-full p-2 {{ $dayInMonth ? $isToday ? 'bg-yellow-100' : ' bg-white ' : 'bg-gray-100' }} flex flex-col">
+            style="width: 100%; 
+height: 100%; padding: 0.5rem; display: flex; 
+display: flex; 
+flex-direction: column; {{ $dayInMonth ? $isToday ? 'background-color: #FEF3C7; ' : ' background-color: #ffffff; 
+ ' : 'background-color: #F3F4F6; ' }}">
 
             {{-- Number of Day --}}
-            <div class="flex items-center">
-                <p class="text-sm {{ $dayInMonth ? ' font-medium ' : '' }}">
+            <div style="display: flex; 
+display: flex; 
+align-items: center; ">
+                <p style="{{ $dayInMonth ? 'font-weight: 500; 
+' : '' }}">
                     {{ $day->format('j') }}
                 </p>
-                <p class="text-xs text-gray-600 ml-4">
+                <p style="margin-left: 1rem; 
+color: #4B5563; 
+font-size: 0.75rem;
+line-height: 1rem; 
+;">
                     @if($events->isNotEmpty())
                         {{ $events->count() }} {{ Str::plural('event', $events->count()) }}
                     @endif
@@ -31,8 +46,8 @@
             </div>
 
             {{-- Events --}}
-            <div class="p-2 my-2 flex-1 overflow-y-auto">
-                <div class="grid grid-cols-1 grid-flow-row gap-2">
+            <div style="padding: 0.5rem; margin-top:0.5rem; margin-bottom: 0.5rem; flex: 1 1 0%; overflow-y:auto;">
+                <div style="display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); grid-auto-flow: row; gap:0.5rem;">
                     @foreach($events as $event)
                         <div
                             @if($dragAndDropEnabled)

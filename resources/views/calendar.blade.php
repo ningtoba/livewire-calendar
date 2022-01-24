@@ -9,18 +9,28 @@
         @includeIf($beforeCalendarView)
     </div>
 
-    <div class="flex">
-        <div class="overflow-x-auto w-full">
-            <div class="inline-block min-w-full overflow-hidden">
+    <div style="display: flex; ">
+        <div style="overflow-x: auto; 
+width: 100%; 
+">
+            <div style="display: inline-block; 
+overflow: hidden; 
+min-width: 100%; ">
 
-                <div class="w-full flex flex-row">
+                <div style="display: flex; 
+display: flex; 
+flex-direction: row; 
+width: 100%; ">
                     @foreach($monthGrid->first() as $day)
                         @include($dayOfWeekView, ['day' => $day])
                     @endforeach
                 </div>
 
                 @foreach($monthGrid as $week)
-                    <div class="w-full flex flex-row">
+                    <div style="display: flex; 
+display: flex; 
+flex-direction: row; 
+width: 100%; ">
                         @foreach($week as $day)
                             @include($dayView, [
                                     'componentId' => $componentId,
